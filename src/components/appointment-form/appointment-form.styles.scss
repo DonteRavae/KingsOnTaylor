@@ -18,7 +18,7 @@
         flex-flow: row wrap;
         color: white;
         margin-bottom: 20px;
-        
+
         h3 {
             width: 100%;
             text-align: center;
@@ -40,8 +40,14 @@
     .barbers-and-times {
         width: 100%;
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
 
         // padding: 0 15px;
+        div {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            height: 30px;
+        }
     }
 }
