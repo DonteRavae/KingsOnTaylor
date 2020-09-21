@@ -1,0 +1,17 @@
+.services-menu-scroller {
+    // width: 90%;
+    height: 25%;
+    // align-items: center;
+
+    background-color: gray;
+    margin: 40px 15px;
+    padding: 3px;
+    overflow-x: auto;
+    white-space: nowrap;
+    scroll-behavior: smooth;
+    scrollbar-width: 0;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}

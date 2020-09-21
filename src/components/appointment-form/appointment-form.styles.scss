@@ -10,6 +10,8 @@
     padding: 25px 0;
     margin-left: 20px;
 
+    display: block;
+
     .appointment-form-header {
         width: 100%;
 
@@ -38,11 +40,12 @@
     }
 
     .barbers-and-times {
-        width: 100%;
+        // width: 100%;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
 
         // padding: 0 15px;
+
         div {
             flex: 1;
             display: flex;

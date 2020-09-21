@@ -11,19 +11,20 @@
 // }
 
 @mixin formLabel {
-        left: 20px;
-        top: 10px;
-        color: gray;
-        font-size: 16px;
-        font-weight: normal;
-        position: absolute;
-        pointer-events: none;
-        transition: 300ms ease all;
+    left: 20px;
+    top: 10px;
+    color: gray;
+    font-size: 16px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    transition: 300ms ease all;
 }
 
 .form-input-group {
     position: relative;
     padding: 0 15px;
+    flex: 1;
 
     .form-input {
         background: none;
@@ -46,8 +47,8 @@
         // &:focus ~ .form-input-label-compressed {
         //     @include shrinkLabelCompressed();
         // }
-        
-        &:focus ~ .form-input-label {
+
+        &:focus~.form-input-label {
             @include shrinkLabel();
         }
 
@@ -67,19 +68,15 @@
 
     }
 
-    // .form-input-label-compressed {
-    //     @include formLabel();
-
-    //     &.shrink {
-    //         @include shrinkLabelCompressed();
-    //     }
-    // }
-
     .format {
         left: 15px;
         top: 42px;
         position: absolute;
         color: yellow;
         font-size: 12px;
+    }
+
+    .select-form-options {
+        width: 100%;
     }
 }
