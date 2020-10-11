@@ -8,20 +8,34 @@ import ServicesMenuScroller from "../services-menu-scroller/services-menu-scroll
 import "./appointment-form.styles.scss";
 
 const AppointmentForm = () => {
-  const [formValues, setFormValues] = useState({
+  const INITIAL_FORM_VALUES = {
     firstName: "",
     lastName: "",
     phoneNumber: "",
     barber: "",
-  });
+    appointmentTime: "",
+    service: ""
+  }
+  
+  const [formValues, setFormValues] = useState(INITIAL_FORM_VALUES);
 
-  const handleChange = (event) => {
+  const [selected, setSelected] = useState(null);
+
+  const handleChange = event => {
     const { name, value } = event.target;
     setFormValues({ ...formValues, [name]: value });
   };
-
+  
+  const handleSelection = event => {
+    event.preventDefault();
+    let op = event.target.getAttribute('data-key');
+    setSelected(op);
+    setFormValues({...formValues, service: op})
+  }
+    
   const submitForm = event => {
-
+    //On submission, payment information modal or page redirect (card not charged until end of service)
+      
   }
 
   return (
@@ -62,16 +76,28 @@ const AppointmentForm = () => {
         <SelectFormInput
           name="barber"
           values={["Choose A Barber", "tremaine", "lee", "dante"]}
+          value={formValues.barber}
+          handleChange={handleChange}
           required
         />
+
+        {/*Time slots filtered by times not selected throughout store hours in 30 minute intervals*/}
+        
         <SelectFormInput
           name="appointmentTimes"
           values={["Choose A Time"]}
+          value={formValues.appointmentTime}
+          handleChange={handleChange}
           required
         />
       </div>
 
-      <ServicesMenuScroller />
+      <ServicesMenuScroller 
+        name="service"
+        value={formValues.service}
+        handleSelection={handleSelection}
+        selected={selected}
+      />
 
       <div className="btn-wrapper">
         <CustomButton title="Book Appointment" handleSubmit={submitForm} />

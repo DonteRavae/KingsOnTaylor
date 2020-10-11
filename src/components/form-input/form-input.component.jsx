@@ -15,11 +15,17 @@ export const FormInput = ({ handleChange, label, ...otherProps}) => (
     </div>
 );
 
-export const SelectFormInput = ({label, ...otherProps}) => (
+export const SelectFormInput = ({label, handleChange, ...otherProps}) => (
     <div className="form-input-group">
-        <select {...otherProps} className="select-form-options">
+        <select onChange={handleChange} {...otherProps} className="select-form-options">
             {otherProps.values.map(value => (
-                <option className="option" value={value}>{value[0].toUpperCase() + value.slice(1)}</option>
+                <option 
+                    className="option" 
+                    value={value}
+                    key={value}
+                >
+                    {value[0].toUpperCase() + value.slice(1)}
+                </option>
             ))}
         </select>
     </div>

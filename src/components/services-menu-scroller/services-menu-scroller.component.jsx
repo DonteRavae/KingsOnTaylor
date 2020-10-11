@@ -1,5 +1,5 @@
 //React
-import React, { useState } from "react";
+import React from "react";
 //Components
 import ServiceItem from "../service-item/service-item.component";
 //Assets
@@ -10,41 +10,36 @@ import AfroTaper from "../../assets/afro-taper-haircut.jpeg";
 //Styles
 import "./services-menu-scroller.styles.scss";
 
-const ServicesMenuScroller = () => {
-  const [services, toggleSelectedServices] = useState({
-    "High Fade": {
+const ServicesMenuScroller = ({handleSelection, selected}) => {
+  //Static services for now but in future populate with universal services (services each barber supplies)
+  const services = [
+    {
+      type: "High Fade",
       image: HighFade,
-      selected: false
     },
-    "Temple Fade": {
+    {
+      type: "Temple Fade",
       image: TempFade,
-      selected: false
     },
-    "Even Cut": {
+    {
+      type: "Even Cut",
       image: EvenCut,
-      selected: false
     },
-    "Afro Taper": {
+    {
+      type: "Afro Taper",
       image: AfroTaper,
-      selected: false
     }
-  });
-
-  const handleSelection = event => {
-    event.preventDefault();
-    let selected = event.target.getAttribute('data-key');
-
-  }
+  ];
 
   return (
-    <section className="services-menu-scroller">
-      {Object.entries(services).map(([key, service]) => (
+    <section className="services-menu-scroller"> 
+      {services.map(service => (
         <ServiceItem
-          key={key}
-          style={key}
+          key={service.type}
+          style={service.type}
           imgUrl={service.image}
           handleSelection={handleSelection}
-          selected={service.selected}
+          selectedOption={selected === service.type ? true : false}
         />
       ))}
     </section>
