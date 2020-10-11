@@ -11,32 +11,40 @@ import AfroTaper from "../../assets/afro-taper-haircut.jpeg";
 import "./services-menu-scroller.styles.scss";
 
 const ServicesMenuScroller = () => {
-  const [services, addServices] = useState([
-    {
-      style: "High Fade",
+  const [services, toggleSelectedServices] = useState({
+    "High Fade": {
       image: HighFade,
+      selected: false
     },
-    {
-      style: "Temple Fade",
+    "Temple Fade": {
       image: TempFade,
+      selected: false
     },
-    {
-      style: "Even Cut",
+    "Even Cut": {
       image: EvenCut,
+      selected: false
     },
-    {
-      style: "Afro Taper",
+    "Afro Taper": {
       image: AfroTaper,
-    },
-  ]);
+      selected: false
+    }
+  });
+
+  const handleSelection = event => {
+    event.preventDefault();
+    let selected = event.target.getAttribute('data-key');
+
+  }
 
   return (
     <section className="services-menu-scroller">
-      {services.map((service) => (
+      {Object.entries(services).map(([key, service]) => (
         <ServiceItem
-          key={service.style}
-          style={service.style}
+          key={key}
+          style={key}
           imgUrl={service.image}
+          handleSelection={handleSelection}
+          selected={service.selected}
         />
       ))}
     </section>

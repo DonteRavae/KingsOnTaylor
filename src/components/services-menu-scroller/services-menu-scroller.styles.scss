@@ -4,12 +4,13 @@
     // align-items: center;
 
     background-color: gray;
-    margin: 40px 15px;
+    margin: 35px 15px 0;
     padding: 3px;
     overflow-x: auto;
     white-space: nowrap;
     scroll-behavior: smooth;
-    scrollbar-width: 0;
+    border: 2px solid gray;
+    border-radius: 1px;
 
     &::-webkit-scrollbar {
         display: none;

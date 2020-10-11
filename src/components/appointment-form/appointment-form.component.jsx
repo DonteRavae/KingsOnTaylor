@@ -1,5 +1,6 @@
 //React
 import React, { useState } from "react";
+import CustomButton from "../custom-button/custom-button.component";
 //Components
 import FormInput, { SelectFormInput } from "../form-input/form-input.component";
 import ServicesMenuScroller from "../services-menu-scroller/services-menu-scroller.component";
@@ -18,6 +19,10 @@ const AppointmentForm = () => {
     const { name, value } = event.target;
     setFormValues({ ...formValues, [name]: value });
   };
+
+  const submitForm = event => {
+
+  }
 
   return (
     <form className="appointment-form">
@@ -67,6 +72,10 @@ const AppointmentForm = () => {
       </div>
 
       <ServicesMenuScroller />
+
+      <div className="btn-wrapper">
+        <CustomButton title="Book Appointment" handleSubmit={submitForm} />
+      </div>
     </form>
   );
 };

@@ -1,21 +1,24 @@
 //React
-import React from "react";
+import React, { useState } from "react";
 //Styles
 import "./service-item.styles.scss";
 
-const ServiceItem = ({ style, imgUrl }) => {
+const ServiceItem = ({ style, imgUrl, handleSelection, selected }) => {
+
+
   const bkg = {
     backgroundImage: `url(${imgUrl})`,
     backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center center",
+    backgroundPosition: "center",
   };
 
+
+
   return (
-    <article className="service-item">
+    <article className={` ${selected ? 'selected' : ''} service-item`}>
       <div className="service-name">{style}</div>
       <div className="service-img" style={bkg} />
-      <button className="select-btn">Select</button>
+      <button className="select-btn" onClick={handleSelection} data-key={style}>Select</button>
     </article>
   );
 };
