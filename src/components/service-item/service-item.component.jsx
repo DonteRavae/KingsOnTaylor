@@ -15,10 +15,10 @@ const ServiceItem = ({ style, imgUrl, handleSelection, selectedOption }) => {
 
 
   return (
-    <article className={` ${selectedOption ? 'selected' : ''} service-item`}>
+    <article className={` ${selectedOption ? 'selected' : ''} service-item`} onClick={handleSelection} data-key={style}>
       <div className="service-name">{style}</div>
       <div className="service-img" style={bkg} />
-      <button className="select-btn" onClick={handleSelection} data-key={style}>Select</button>
+      <div className="select">Select</div>
     </article>
   );
 };
