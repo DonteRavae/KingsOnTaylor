@@ -29,20 +29,21 @@ const AppointmentForm = () => {
 
   //Handle service selection
   const handleSelection = (event) => {
-    event.preventDefault();
-    let op = event.currentTarget.getAttribute("data-key");
+    let op = event.target.getAttribute("data-key");
     setSelected(op);
     setFormValues({ ...formValues, service: op });
   };
 
   const submitForm = (event) => {
     //On submission, payment information modal or page redirect (card not charged until end of service)
-    event.preventDefault();
-    console.log(formValues);
   };
 
   return (
-    <form className="appointment-form">
+    <form
+      className="appointment-form"
+      method="POST"
+      action="http://localhost:8080/booking"
+    >
       <header className="appointment-form-header">
         <h3>NEED A CUT TODAY?</h3>
         <h5>Book an appointment with us below!</h5>
@@ -97,7 +98,6 @@ const AppointmentForm = () => {
 
       <ServicesMenuScroller
         name="service"
-        value={formValues.service}
         handleSelection={handleSelection}
         selected={selected}
       />

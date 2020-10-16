@@ -10,7 +10,7 @@ import AfroTaper from "../../assets/afro-taper-haircut.jpeg";
 //Styles
 import "./services-menu-scroller.styles.scss";
 
-const ServicesMenuScroller = ({handleSelection, selected}) => {
+const ServicesMenuScroller = ({ handleSelection, selected, name }) => {
   //Static services for now but in future populate with universal services (services each barber supplies)
   const services = [
     {
@@ -28,18 +28,19 @@ const ServicesMenuScroller = ({handleSelection, selected}) => {
     {
       type: "Afro Taper",
       image: AfroTaper,
-    }
+    },
   ];
 
   return (
-    <section className="services-menu-scroller"> 
-      {services.map(service => (
+    <section className="services-menu-scroller">
+      {services.map((service) => (
         <ServiceItem
           key={service.type}
           style={service.type}
           imgUrl={service.image}
           handleSelection={handleSelection}
           selectedOption={selected === service.type ? true : false}
+          name={name}
         />
       ))}
     </section>
