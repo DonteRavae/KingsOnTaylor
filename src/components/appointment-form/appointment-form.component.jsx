@@ -10,6 +10,7 @@ import "./appointment-form.styles.scss";
 const INITIAL_FORM_VALUES = {
   firstName: "",
   lastName: "",
+  email: "",
   phoneNumber: "",
   barber: "",
   appointmentTime: "",
@@ -66,6 +67,14 @@ const AppointmentForm = () => {
           required
         />
       </div>
+      <FormInput
+        name="email"
+        type="email"
+        value={formValues.email}
+        label="Email Address"
+        handleChange={handleChange}
+        required
+      />
       <FormInput
         name="phoneNumber"
         type="tel"
