@@ -7,11 +7,13 @@
   overflow: auto;
   // backdrop-filter: blur(10px);
 
+  display: flex;
+  flex-direction: column;
   position: relative;
-  padding: 3em 2em;
-  margin-left: 20px;
+  padding: 1.5em 2em;
+  // margin-left: 20px;
 
-  display: block;
+  // display: block;
 
   .appointment-form-header {
     width: 100%;
@@ -20,19 +22,41 @@
     justify-content: center;
     flex-flow: row wrap;
     color: white;
-    margin-bottom: 20px;
+    // margin-top: auto;
+    margin: 0.8em 0;
 
-    h3 {
+    h1 {
       width: 100%;
       text-align: center;
       margin: 0;
+      margin-top: 0.24em;
       color: red;
     }
   }
 
+  .input-wrapper {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    margin: auto 0;
+    // align-items: center;
+  }
+
   .name-inputs {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+
+    div:nth-child(1) {
+      padding-right: 15px;
+    }
+
+    div:nth-child(2) {
+      padding-left: 15px;
+
+      .form-input-label {
+        left: 20px;
+      }
+    }
   }
 
   .barbers-and-times {
@@ -48,6 +72,14 @@
       justify-content: center;
       height: 30px;
     }
+
+    div:nth-child(1) {
+      padding-right: 15px;
+    }
+
+    div:nth-child(2) {
+      padding-left: 15px;
+    }
   }
 
   .btn-wrapper {
@@ -55,5 +87,6 @@
     display: flex;
     justify-content: center;
     padding: 0 10%;
+    margin-bottom: auto;
   }
 }

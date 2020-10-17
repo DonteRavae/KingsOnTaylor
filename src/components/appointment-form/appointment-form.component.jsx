@@ -46,70 +46,74 @@ const AppointmentForm = () => {
       action="http://localhost:8080/booking"
     >
       <header className="appointment-form-header">
-        <h3>NEED A CUT TODAY?</h3>
+        <h1>
+          NEED A CUT <span>TODAY?</span>
+        </h1>
         <h5>Book an appointment with us below!</h5>
       </header>
-      <div className="name-inputs">
+      <div className="input-wrapper">
+        <div className="name-inputs">
+          <FormInput
+            name="firstName"
+            type="text"
+            value={formValues.firstName}
+            label="First Name"
+            handleChange={handleChange}
+            required
+          />
+          <FormInput
+            name="lastName"
+            type="text"
+            value={formValues.lastName}
+            label="Last Name"
+            handleChange={handleChange}
+            required
+          />
+        </div>
         <FormInput
-          name="firstName"
-          type="text"
-          value={formValues.firstName}
-          label="First Name"
+          name="email"
+          type="email"
+          value={formValues.email}
+          label="Email Address"
           handleChange={handleChange}
           required
         />
         <FormInput
-          name="lastName"
-          type="text"
-          value={formValues.lastName}
-          label="Last Name"
+          name="phoneNumber"
+          type="tel"
+          pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+          value={formValues.phoneNumber}
+          label="Phone Number"
           handleChange={handleChange}
+          format="Format: 803-555-5555"
           required
+        />
+        <div className="barbers-and-times">
+          <SelectFormInput
+            name="barber"
+            values={["Choose A Barber", "tremaine", "lee", "dante"]}
+            value={formValues.barber}
+            handleChange={handleChange}
+            required
+          />
+
+          {/*Time slots filtered by times not selected throughout store hours in 30 minute intervals*/}
+
+          <SelectFormInput
+            name="appointmentTimes"
+            values={["Choose A Time"]}
+            value={formValues.appointmentTime}
+            handleChange={handleChange}
+            required
+          />
+        </div>
+
+        <ServicesMenuScroller
+          name="service"
+          handleSelection={handleSelection}
+          selected={selected}
         />
       </div>
-      <FormInput
-        name="email"
-        type="email"
-        value={formValues.email}
-        label="Email Address"
-        handleChange={handleChange}
-        required
-      />
-      <FormInput
-        name="phoneNumber"
-        type="tel"
-        pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-        value={formValues.phoneNumber}
-        label="Phone Number"
-        handleChange={handleChange}
-        format="Format: 803-555-5555"
-        required
-      />
-      <div className="barbers-and-times">
-        <SelectFormInput
-          name="barber"
-          values={["Choose A Barber", "tremaine", "lee", "dante"]}
-          value={formValues.barber}
-          handleChange={handleChange}
-          required
-        />
-
-        {/*Time slots filtered by times not selected throughout store hours in 30 minute intervals*/}
-
-        <SelectFormInput
-          name="appointmentTimes"
-          values={["Choose A Time"]}
-          value={formValues.appointmentTime}
-          handleChange={handleChange}
-          required
-        />
-      </div>
-
-      <ServicesMenuScroller
-        name="service"
-        handleSelection={handleSelection}
-        selected={selected}
-      />
 
       <div className="btn-wrapper">
         <CustomButton title="Book Appointment" handleSubmit={submitForm} />
