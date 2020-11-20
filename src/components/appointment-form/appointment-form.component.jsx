@@ -1,11 +1,25 @@
 //React
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CustomButton from "../custom-button/custom-button.component";
+//Axios
+import axios from "axios";
 //Components
 import FormInput, { SelectFormInput } from "../form-input/form-input.component";
 import ServicesMenuScroller from "../services-menu-scroller/services-menu-scroller.component";
 //Styles
 import "./appointment-form.styles.scss";
+
+//Constants
+const TODAY = new Date().getDay();
+const OPEN_TIME = new Date(new Date().setHours(9, 0, 0, 0));
+//Barbershop closing time will either be 5:30PM or 3PM depending on the day
+const CLOSE_TIME =
+  TODAY === 6
+    ? new Date(new Date().setHours(15, 0, 0, 0))
+    : TODAY > 1 && TODAY < 6
+    ? new Date(new Date().setHours(18, 0, 0, 0))
+    : "Not Open";
+const INCREMENT_VALUE = 1800000;
 
 const INITIAL_FORM_VALUES = {
   firstName: "",
@@ -13,14 +27,35 @@ const INITIAL_FORM_VALUES = {
   email: "",
   phoneNumber: "",
   barber: "",
-  appointmentTime: "",
+  appointmentTime: 0,
   service: "",
 };
 
 const AppointmentForm = () => {
-  const [formValues, setFormValues] = useState(INITIAL_FORM_VALUES);
+  /******** States and Effects ********/
 
+  //----Form Input Values----//
+  const [formValues, setFormValues] = useState(INITIAL_FORM_VALUES);
+  const [formTimeValue, setFormTimeValue] = useState("");
   const [selected, setSelected] = useState(null);
+  const [timeSlots, setTimeSlots] = useState({ "Choose A Value": null });
+
+  useEffect(() => {
+    let open = OPEN_TIME.getTime();
+    let close = CLOSE_TIME.getTime();
+    let tmpObj = { "Choose A Time": null };
+
+    while (open !== close) {
+      let detailedTime = new Date(open).toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+      tmpObj = { ...tmpObj, [detailedTime]: open };
+      open += INCREMENT_VALUE;
+    }
+
+    setTimeSlots(tmpObj);
+  }, []);
 
   //Handle form input
   const handleChange = (event) => {
@@ -35,21 +70,24 @@ const AppointmentForm = () => {
     setFormValues({ ...formValues, service: op });
   };
 
-  const submitForm = (event) => {
-    //On submission, payment information modal or page redirect (card not charged until end of service)
+  //Handle Appointment Time Selection
+  const handleTimeSelection = (event) => {
+    let { name, value } = event.target;
+    let milli = timeSlots[value];
+    setFormValues({ ...formValues, [name]: milli });
+    setFormTimeValue(value);
+  };
+  //Handle form submission
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(formValues);
   };
 
   return (
-    <form
-      className="appointment-form"
-      method="POST"
-      action="http://localhost:8080/booking"
-    >
+    <form className="appointment-form" onSubmit={handleSubmit}>
       <header className="appointment-form-header">
-        <h1>
-          NEED A CUT <span>TODAY?</span>
-        </h1>
-        <h5>Book an appointment with us below!</h5>
+        <h1>NEED A CUT TODAY?</h1>
+        <h4>Book an appointment with us below!</h4>
       </header>
       <div className="input-wrapper">
         <div className="name-inputs">
@@ -100,10 +138,10 @@ const AppointmentForm = () => {
           {/*Time slots filtered by times not selected throughout store hours in 30 minute intervals*/}
 
           <SelectFormInput
-            name="appointmentTimes"
-            values={["Choose A Time"]}
-            value={formValues.appointmentTime}
-            handleChange={handleChange}
+            name="appointmentTime"
+            values={Object.keys(timeSlots)}
+            value={formTimeValue}
+            handleChange={handleTimeSelection}
             required
           />
         </div>
@@ -116,7 +154,7 @@ const AppointmentForm = () => {
       </div>
 
       <div className="btn-wrapper">
-        <CustomButton title="Book Appointment" handleSubmit={submitForm} />
+        <CustomButton title="Book Appointment" />
       </div>
     </form>
   );
