@@ -1,14 +1,16 @@
 @mixin shrinkLabel {
   top: -16px;
+  left: 0;
+  font-size: 12px;
+  color: black;
+}
+
+@mixin shrinkLabelInverted {
+  top: -16px;
+  left: 0;
   font-size: 12px;
   color: white;
 }
-
-// @mixin shrinkLabelCompressed {
-//     top: 9px;
-//     font-size: 12px;
-//     color: white;
-// }
 
 @mixin formLabel {
   left: 5px;
@@ -33,24 +35,24 @@
     background: none;
     background-color: white;
     color: black;
-    font-size: 18px;
+    font-size: 14px;
     border: none;
     border-radius: 0;
     border-bottom: 1px solid gray;
     // margin-top: 0;
-    padding: 10px 10px 10px 5px;
+    padding: 10px 10px 10px 0;
     // margin-bottom: auto;
 
     &:focus {
       outline: none;
     }
 
-    // &:focus ~ .form-input-label-compressed {
-    //     @include shrinkLabelCompressed();
-    // }
-
     &:focus ~ .form-input-label {
       @include shrinkLabel();
+    }
+
+    &:focus ~ .inverted {
+      @include shrinkLabelInverted();
     }
   }
 
@@ -62,12 +64,15 @@
     @include formLabel();
 
     &.shrink {
+      &.inverted {
+        @include shrinkLabelInverted();
+      }
       @include shrinkLabel();
     }
   }
 
   .format {
-    left: 15px;
+    // left: 15px;
     top: 42px;
     position: absolute;
     color: yellow;
