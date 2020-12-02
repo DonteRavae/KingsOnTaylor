@@ -1,18 +1,29 @@
 //React
-import React from 'react';
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 //Components
-import HeaderNav from './components/header-nav/header-nav.component';
-import Landing from './components/landing/landing.component';
-import SectionSeparator from './components/section-separator/section-separator.component';
+import HeaderNav from "./components/header-nav/header-nav.component";
+import HomePage from "./pages/home-page/home.pages";
+import BarbersPage from "./pages/barbers-page/barbers.pages";
+import ClientHubPage from "./pages/clientHub-page/clientHub.pages";
 //Styles
-import './App.css';
+import "./App.css";
 
 const App = () => (
-  <main className="App">
+  <Router>
     <HeaderNav />
-    <Landing />
-    <SectionSeparator />
-  </main>
+    <Switch>
+      <Route exact path="/">
+        <HomePage />
+      </Route>
+      <Route path="/barbers">
+        <BarbersPage />
+      </Route>
+      <Route path="/clientHub">
+        <ClientHubPage />
+      </Route>
+    </Switch>
+  </Router>
 );
 
 export default App;
