@@ -4,8 +4,6 @@ import { useState } from "react";
 //Components
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
-
-// import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
 //Styles
 import "./sign-up.styles.scss";
 
@@ -28,8 +26,6 @@ const SignUp = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    const { displayName, email, password, confirmPassword } = formValues;
 
     if (password !== confirmPassword) {
       alert("Passwords don't match");
