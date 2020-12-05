@@ -23,6 +23,12 @@
   transition: 300ms ease all;
 }
 
+@mixin formatStyle {
+  top: 38px;
+  position: absolute;
+  font-size: 12px;
+}
+
 .form-input-group {
   position: relative;
   padding: 0;
@@ -40,7 +46,7 @@
     border-radius: 0;
     border-bottom: 1px solid gray;
     // margin-top: 0;
-    padding: 10px 10px 10px 0;
+    padding: 10px 10px 10px 5px;
     // margin-bottom: auto;
 
     &:focus {
@@ -60,6 +66,33 @@
     letter-spacing: 0.3rem;
   }
 
+  .format {
+    @include formatStyle();
+    visibility: hidden;
+    color: red;
+    // transition: 150ms ease all;
+  }
+
+  .format-inverted {
+    @include formatStyle();
+    visibility: hidden;
+    color: yellow;
+  }
+
+  input[type="tel"]:focus {
+    ~ .format {
+      @include formatStyle();
+      color: red;
+      visibility: visible;
+    }
+
+    ~ .format-inverted {
+      @include formatStyle();
+      color: yellow;
+      visibility: visible;
+    }
+  }
+
   .form-input-label {
     @include formLabel();
 
@@ -69,14 +102,6 @@
       }
       @include shrinkLabel();
     }
-  }
-
-  .format {
-    // left: 15px;
-    top: 42px;
-    position: absolute;
-    color: yellow;
-    font-size: 12px;
   }
 
   .select-form-options {

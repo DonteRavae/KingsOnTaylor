@@ -16,7 +16,9 @@ export const FormInput = ({ inverted, handleChange, label, ...otherProps }) => (
       </label>
     ) : null}
     {otherProps.format ? (
-      <span className="format">{otherProps.format}</span>
+      <span className={inverted ? "format-inverted" : "format"}>
+        {otherProps.format}
+      </span>
     ) : null}
   </div>
 );
