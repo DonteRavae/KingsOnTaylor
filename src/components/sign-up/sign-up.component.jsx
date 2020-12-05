@@ -1,6 +1,8 @@
 //React
 import React from "react";
 import { useState } from "react";
+//Redux
+import { useDispatch, useSelector } from "react-redux";
 //Components
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
@@ -9,6 +11,7 @@ import axios from "axios";
 import bcrypt from "bcryptjs";
 //Styles
 import "./sign-up.styles.scss";
+import { setCurrentUser } from "../../redux/user/user.actions";
 
 const INITIAL_FORM_VALUES = {
   firstName: "",
@@ -52,7 +55,6 @@ const createUserProfile = async (loginId, additionalInfo) => {
     });
 
     if (user.data) {
-      console.log(user.data);
       return user.data;
     }
   } catch (error) {
@@ -70,6 +72,9 @@ const SignUp = () => {
     password,
     confirmPassword,
   } = formValues;
+
+  // const currentUser = useSelector(({ user }) => user.currentUser);
+  const dispatch = useDispatch();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -100,7 +105,7 @@ const SignUp = () => {
         lastName,
         phoneNumber,
       });
-      console.log(client);
+      dispatch(setCurrentUser(client));
       setFormValues(INITIAL_FORM_VALUES);
     } catch (error) {
       console.error(error);
