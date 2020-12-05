@@ -1,26 +1,24 @@
 //React
 import React, { useState, useEffect } from "react";
 import CustomButton from "../custom-button/custom-button.component";
-//Axios
-import axios from "axios";
 //Components
 import FormInput, { SelectFormInput } from "../form-input/form-input.component";
 import ServicesMenuScroller from "../services-menu-scroller/services-menu-scroller.component";
+//Async & Utilities
+import axios from "axios";
 //Styles
 import "./appointment-form.styles.scss";
 
 //Constants
 const TODAY = new Date().getDay();
 const OPEN_TIME = new Date(new Date().setHours(9, 0, 0, 0));
-//Barbershop closing time will either be 5:30PM or 3PM depending on the day
 const CLOSE_TIME =
   TODAY === 6
     ? new Date(new Date().setHours(15, 0, 0, 0))
     : TODAY > 1 && TODAY < 6
     ? new Date(new Date().setHours(18, 0, 0, 0))
-    : "Not Open";
+    : new Date(new Date().setHours(9, 0, 0, 0));
 const INCREMENT_VALUE = 1800000;
-
 const INITIAL_FORM_VALUES = {
   firstName: "",
   lastName: "",
@@ -32,8 +30,6 @@ const INITIAL_FORM_VALUES = {
 };
 
 const AppointmentForm = () => {
-  /******** States and Effects ********/
-
   //----Form Input Values----//
   const [formValues, setFormValues] = useState(INITIAL_FORM_VALUES);
   const [formTimeValue, setFormTimeValue] = useState("");
@@ -57,30 +53,34 @@ const AppointmentForm = () => {
     setTimeSlots(tmpObj);
   }, []);
 
-  //Handle form input
+  //----Event Handlers----//
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormValues({ ...formValues, [name]: value });
   };
 
-  //Handle service selection
   const handleSelection = (event) => {
     let op = event.target.getAttribute("data-key");
     setSelected(op);
     setFormValues({ ...formValues, service: op });
   };
 
-  //Handle Appointment Time Selection
   const handleTimeSelection = (event) => {
-    let { name, value } = event.target;
+    const { name, value } = event.target;
     let milli = timeSlots[value];
     setFormValues({ ...formValues, [name]: milli });
     setFormTimeValue(value);
   };
-  //Handle form submission
-  const handleSubmit = (event) => {
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(formValues);
+    let res = await axios.post(
+      "http://localhost:8080/booking/today",
+      formValues
+    );
+
+    //Returns appointment card document
+    console.log(res.data);
   };
 
   return (
@@ -97,6 +97,7 @@ const AppointmentForm = () => {
             value={formValues.firstName}
             label="First Name"
             handleChange={handleChange}
+            inverted
             required
           />
           <FormInput
@@ -105,6 +106,7 @@ const AppointmentForm = () => {
             value={formValues.lastName}
             label="Last Name"
             handleChange={handleChange}
+            inverted
             required
           />
         </div>
@@ -114,6 +116,7 @@ const AppointmentForm = () => {
           value={formValues.email}
           label="Email Address"
           handleChange={handleChange}
+          inverted
           required
         />
         <FormInput
@@ -124,6 +127,7 @@ const AppointmentForm = () => {
           label="Phone Number"
           handleChange={handleChange}
           format="Format: 803-555-5555"
+          inverted
           required
         />
         <div className="barbers-and-times">
