@@ -2,17 +2,19 @@
 import React from "react";
 import { useState } from "react";
 //Redux
-import { useDispatch, useSelector } from "react-redux";
-//Components
-import FormInput from "../form-input/form-input.component";
-import CustomButton from "../custom-button/custom-button.component";
+import { useDispatch } from "react-redux";
 //Async and Utilities
 import axios from "axios";
 import bcrypt from "bcryptjs";
+//Components
+import FormInput from "../form-input/form-input.component";
+import CustomButton from "../custom-button/custom-button.component";
 //Styles
 import "./sign-up.styles.scss";
 import { setCurrentUser } from "../../redux/user/user.actions";
+import { useEffect } from "react";
 
+//Constants
 const INITIAL_FORM_VALUES = {
   firstName: "",
   lastName: "",
@@ -26,19 +28,16 @@ const createLoginWithEmailAndPassword = async (email, password) => {
   //Hash password before checking
   const hash = await bcrypt.hash(password, 12);
   try {
-    let loginProfile = await axios.post(
-      "http://localhost:8080/loginProfileCheck",
-      {
-        email,
-        hash,
-      }
-    );
+    let { data } = await axios.post("http://localhost:8080/loginProfileCheck", {
+      email,
+      hash,
+    });
 
-    if (!loginProfile.data) {
+    if (!data) {
       alert("Email Address already exists!");
     }
     //If user doesn't exist in database return login profile. Data will return false if user exists.
-    return loginProfile.data;
+    return data;
   } catch (error) {
     console.log(error);
   }
@@ -63,7 +62,9 @@ const createUserProfile = async (loginId, additionalInfo) => {
 };
 
 const SignUp = () => {
+  //----State----//
   const [formValues, setFormValues] = useState(INITIAL_FORM_VALUES);
+  const [userProfile, setUserProfile] = useState(null);
   const {
     firstName,
     lastName,
@@ -73,9 +74,17 @@ const SignUp = () => {
     confirmPassword,
   } = formValues;
 
-  // const currentUser = useSelector(({ user }) => user.currentUser);
+  //----Selectors and Dispatch----//
   const dispatch = useDispatch();
 
+  //Effect
+  useEffect(() => {
+    let mounted = true;
+    if (mounted) dispatch(setCurrentUser(userProfile));
+    return () => (mounted = false);
+  }, [userProfile, dispatch]);
+
+  //--Event Handlers----//
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -105,7 +114,7 @@ const SignUp = () => {
         lastName,
         phoneNumber,
       });
-      dispatch(setCurrentUser(client));
+      setUserProfile(client);
       setFormValues(INITIAL_FORM_VALUES);
     } catch (error) {
       console.error(error);

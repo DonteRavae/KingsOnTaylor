@@ -1,21 +1,50 @@
 //React
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+//Redux
+import { useDispatch } from "react-redux";
+import { setCurrentUser } from "../../redux/user/user.actions";
+//Async and Utilities
+import axios from "axios";
 //Components
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
 //Styles
 import "./sign-in.styles.scss";
+import { useEffect } from "react";
 
+//Constants
 const INITIAL_FORM_VALUES = {
   email: "",
   password: "",
 };
 
+const signInWithEmailAndPassword = async (email, password) => {
+  const { data } = await axios.post("http://localhost:8080/userLogin", {
+    email,
+    password,
+  });
+  return data;
+};
+
 const SignIn = () => {
+  //----State----//
   const [formValues, setFormValues] = useState(INITIAL_FORM_VALUES);
+  const [userProfile, setUserProfile] = useState(null);
   const { email, password } = formValues;
 
+  //----Selectors and Dispatch----//
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    let mounted = true;
+    if (mounted) {
+      console.log(userProfile);
+      dispatch(setCurrentUser(userProfile));
+    }
+    return () => (mounted = false);
+  }, [dispatch, userProfile]);
+
+  //----Event Handlers----//
   const handleChange = (e) => {
     const { value, name } = e.target;
 
@@ -25,14 +54,12 @@ const SignIn = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // const { email, password } = state;
-
-    // try {
-    //   await auth.signInWithEmailAndPassword(email, password);
-    //   setState({email: '', password: ''});
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    try {
+      setUserProfile(await signInWithEmailAndPassword(email, password));
+      setFormValues(INITIAL_FORM_VALUES);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -58,7 +85,7 @@ const SignIn = () => {
         />
         <div className="buttons">
           <CustomButton title="Sign In" />
-          <CustomButton title="Sign in with Google" />
+          {/* <CustomButton title="Sign in with Google" /> */}
         </div>
       </form>
     </div>
