@@ -23,13 +23,13 @@ const HeaderNav = () => (
       </Link>
     </div>
     <div className="link-container">
-      <Link to="/clientHub" className="nav-link">
-        Client Hub
+      <Link to="/bookAppointment" className="nav-link">
+        Make An Appointment
       </Link>
     </div>
     <div className="link-container">
-      <Link to="/bookAppointment" className="nav-link">
-        Make An Appointment
+      <Link to="/clientHub" className="nav-link">
+        Client Hub
       </Link>
     </div>
   </header>
