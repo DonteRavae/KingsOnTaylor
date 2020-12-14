@@ -8,28 +8,19 @@ import "./header-nav.styles.scss";
 const HeaderNav = () => (
   <header className="header-nav">
     <div className="link-container">
-      <Link to="/" className="nav-link">
-        Home
-      </Link>
-    </div>
-    <div className="link-container">
-      <Link to="/barbers" className="nav-link">
-        Barbers
-      </Link>
-    </div>
-    <div className="link-container">
       <Link to="/" className="nav-link brand">
         King's Barbershop
       </Link>
     </div>
-    <div className="link-container">
-      <Link to="/bookAppointment" className="nav-link">
-        Make An Appointment
-      </Link>
-    </div>
-    <div className="link-container">
+
+    <div id="client-hub-link" className="link-container">
       <Link to="/clientHub" className="nav-link">
         Client Hub
+      </Link>
+    </div>
+    <div id="make-appointment-link" className="link-container">
+      <Link to="/bookAppointment" className="nav-link">
+        Make An Appointment
       </Link>
     </div>
   </header>

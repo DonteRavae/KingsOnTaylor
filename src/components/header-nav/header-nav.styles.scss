@@ -2,22 +2,27 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nanum+Gothic&display=swap");
 
 .header-nav {
-  width: 100vw;
-  height: 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  grid-area: 1/1/2/-1;
+  height: 100%;
+  width: 100%;
+  // display: flex;
+  // justify-content: space-between;
+  // align-items: center;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 
   background-color: black;
-  padding: 0 100px;
+  // padding: 0 100px;
 
   position: sticky;
   top: 0;
   z-index: 1;
 
   .link-container {
-    flex: 1;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     .nav-link {
       color: white;
@@ -33,12 +38,21 @@
         font-size: 1.4rem;
         text-decoration: underline;
         flex: 1;
-        text-align: center;
+        text-align: left;
+        padding-left: 2.4rem;
       }
 
       &:hover {
         text-decoration: underline;
       }
     }
+  }
+
+  #client-hub-link {
+    grid-area: 1/4/2/5;
+  }
+
+  #make-appointment-link {
+    grid-area: 1/5/2/6;
   }
 }
