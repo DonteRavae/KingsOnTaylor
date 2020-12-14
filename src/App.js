@@ -11,18 +11,20 @@ import "./App.css";
 
 const App = () => (
   <Router>
-    <HeaderNav />
-    <Switch>
-      <Route exact path="/">
-        <HomePage />
-      </Route>
-      <Route path="/barbers">
-        <BarbersPage />
-      </Route>
-      <Route path="/clientHub">
-        <ClientHubPage />
-      </Route>
-    </Switch>
+    <main className="App">
+      <HeaderNav />
+      <Switch>
+        <Route exact path="/">
+          <HomePage />
+        </Route>
+        <Route path="/barbers">
+          <BarbersPage />
+        </Route>
+        <Route path="/clientHub">
+          <ClientHubPage />
+        </Route>
+      </Switch>
+    </main>
   </Router>
 );
 
