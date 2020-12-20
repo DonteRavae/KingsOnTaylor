@@ -10,7 +10,7 @@
   // align-items: center;
 
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 
   background-color: black;
   // padding: 0 100px;
@@ -49,10 +49,10 @@
   }
 
   #client-hub-link {
-    grid-area: 1/4/2/5;
+    grid-area: 1/5/2/6;
   }
 
   #make-appointment-link {
-    grid-area: 1/5/2/6;
+    grid-area: 1/6/2/7;
   }
 }
