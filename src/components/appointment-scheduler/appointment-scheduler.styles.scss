@@ -1,0 +1,39 @@
+.appointment-scheduler {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5em 0;
+  margin-right: 16.6vw;
+  margin-bottom: 25vh;
+  border: 2px solid gray;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  h2 {
+    color: white;
+    text-shadow: 2px 2px 5px black;
+    margin-bottom: 0.5em;
+  }
+
+  span {
+    color: yellow;
+    text-shadow: 2px 2px 5px black;
+    margin-bottom: 1em;
+    // text-shadow: 1px 1px 0 white;
+  }
+
+  .barber-and-time-container {
+    height: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 0.75em;
+    .barber-and-time-options {
+      flex: 1;
+      height: 75%;
+      margin: 0 1em;
+    }
+  }
+}
