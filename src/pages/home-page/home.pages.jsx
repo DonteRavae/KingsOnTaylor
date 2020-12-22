@@ -1,5 +1,5 @@
 //React
-import React, { useState, useEffect } from "react";
+import React from "react";
 //Components
 import Landing from "../../components/landing/landing.component";
 // import SectionSeparator from "../../components/section-separator/section-separator.component";
@@ -10,22 +10,9 @@ import Landing from "../../components/landing/landing.component";
 import "./home.styles.scss";
 
 const HomePage = () => {
-  const [appointments, setAppointments] = useState(null);
-  
-  useEffect(() => {
-    const fetchAppointments = async () => {
-      const res = await fetch('http://localhost:3000/appointments/today');
-      return await res.json();
-    }
-    
-    setAppointments(fetchAppointments());
-  })
-  
-  
-  
   return (
     <main className="App">
-      <Landing appointments={appointments} />
+      <Landing />
       {/* <SectionSeparator msg="Heavy Is The Head That Wears The Crown" /> */}
 <!--       <FamilyAtmosphere />
       <DetailAndPrecision />
