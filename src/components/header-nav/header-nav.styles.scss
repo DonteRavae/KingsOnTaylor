@@ -11,8 +11,9 @@
 
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  transition: all 0.2s ease-in-out;
 
-  background-color: black;
+  // background-color: black;
   // padding: 0 100px;
 
   position: sticky;
@@ -54,5 +55,9 @@
 
   #make-appointment-link {
     grid-area: 1/6/2/7;
+  }
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.5);
   }
 }
