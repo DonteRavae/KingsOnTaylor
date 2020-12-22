@@ -1,7 +1,7 @@
 //React
 import React from "react";
 //Components
-// import AppointmentForm from "../appointment-form/appointment-form.component";
+import AppointmentScheduler from "../appointment-scheduler/appointment-scheduler.component";
 //Styles
 import "./landing.styles.scss";
 
@@ -15,7 +15,7 @@ const Landing = () => (
           IT'S THE ONLY <span className="crown">CROWN</span> YOU NEVER TAKE OFF!
         </h1>
       </div>
-      {/*    <AppointmentForm /> */}
+      <AppointmentScheduler />
     </fragment>
     <aside className="appointment-queue"></aside>
   </section>
