@@ -13,12 +13,12 @@
     left: 0;
     right: 0;
 
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-      url(../../assets/barbershop-landing1.jpeg);
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    z-index: -1;
+    // background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    //   url(../../assets/barbershop-landing1.jpeg);
+    // background-size: cover;
+    // background-position: center center;
+    // background-repeat: no-repeat;
+    // z-index: -1;
   }
 
   .landing {
@@ -30,22 +30,33 @@
 
     .welcome {
       padding-right: 16.6vw;
+      margin: 1.75em auto;
+      text-align: center;
+      font-size: 3.5em;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 600;
+      text-shadow: 2px 2px 5px black;
+      width: 80%;
 
-      .welcome-msg {
-        margin: 0.75em auto;
-        text-align: center;
-        width: 75%;
-        font-size: 4.2em;
+      .welcome-msg-ln1 {
+        color: white;
+        margin: 0;
+      }
+      .welcome-msg-ln2 {
         color: yellow;
-        text-shadow: 1px 1px 5px black;
+        // color: white;
+        margin: 0;
+      }
+
+      .crown {
       }
     }
   }
 
   .appointment-queue {
     position: absolute;
-    background-color: black;
-    border-left: 2px solid gray;
+    background-color: rgba(128, 128, 128, 0.5);
+    // border-left: 2px solid gray;
     width: 16.6vw;
     right: 0;
     bottom: 0;
