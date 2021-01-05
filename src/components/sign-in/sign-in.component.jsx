@@ -19,7 +19,7 @@ const INITIAL_FORM_VALUES = {
 };
 
 const signInWithEmailAndPassword = async (email, password) => {
-  const { data } = await axios.post("http://localhost:8080/userLogin", {
+  const { data } = await axios.post("http://localhost:8080/user/login", {
     email,
     password,
   });
