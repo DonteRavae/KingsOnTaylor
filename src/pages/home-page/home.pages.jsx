@@ -14,9 +14,9 @@ const HomePage = () => {
     <main className="App">
       <Landing />
       {/* <SectionSeparator msg="Heavy Is The Head That Wears The Crown" /> */}
-<!--       <FamilyAtmosphere />
+      {/* <FamilyAtmosphere />
       <DetailAndPrecision />
-      <MembersOverview /> -->
+      <MembersOverview /> */}
     </main>
   );
 };
