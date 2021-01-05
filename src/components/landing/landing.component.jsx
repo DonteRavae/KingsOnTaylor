@@ -8,7 +8,7 @@ import "./landing.styles.scss";
 const Landing = () => (
   <section className="landing-container">
     {/* <div className="landing-background" /> */}
-    <fragment className="landing">
+    <section className="landing">
       <div className="welcome">
         <h1 className="welcome-msg-ln1">INVEST IN YOUR HAIR.</h1>
         <h1 className="welcome-msg-ln2">
@@ -16,7 +16,7 @@ const Landing = () => (
         </h1>
       </div>
       <AppointmentScheduler />
-    </fragment>
+    </section>
     <aside className="appointment-queue"></aside>
   </section>
 );
