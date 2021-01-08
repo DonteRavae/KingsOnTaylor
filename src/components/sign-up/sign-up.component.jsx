@@ -5,7 +5,6 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 //Async and Utilities
 import axios from "axios";
-import bcrypt from "bcryptjs";
 //Components
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
@@ -22,43 +21,6 @@ const INITIAL_FORM_VALUES = {
   phoneNumber: "",
   password: "",
   confirmPassword: "",
-};
-
-const createLoginWithEmailAndPassword = async (email, password) => {
-  //Hash password before checking
-  const hash = await bcrypt.hash(password, 12);
-  try {
-    let { data } = await axios.post("http://localhost:8080/loginProfileCheck", {
-      email,
-      hash,
-    });
-
-    if (!data) {
-      alert("Email Address already exists!");
-    }
-    //If user doesn't exist in database return login profile. Data will return false if user exists.
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
-  //Check if user exists in database with unique email address.
-};
-
-const createUserProfile = async (loginId, additionalInfo) => {
-  if (loginId === undefined) return;
-
-  try {
-    let user = await axios.post("http://localhost:8080/clientRegistration", {
-      loginId,
-      ...additionalInfo,
-    });
-
-    if (user.data) {
-      return user.data;
-    }
-  } catch (error) {
-    console.log(error);
-  }
 };
 
 const SignUp = () => {
@@ -100,22 +62,16 @@ const SignUp = () => {
     }
 
     try {
-      const loginProfile = await createLoginWithEmailAndPassword(
-        email,
-        password
-      );
-
-      if (loginProfile === undefined) {
-        return;
+      const { success, user, message } = await axios
+        .post("http://localhost:8080/user/register", formValues)
+        .then((response) => response.data);
+      if (success) {
+        setUserProfile(user);
+        setFormValues(INITIAL_FORM_VALUES);
+        console.log(message);
+      } else {
+        console.log(message);
       }
-
-      const client = await createUserProfile(loginProfile, {
-        firstName,
-        lastName,
-        phoneNumber,
-      });
-      setUserProfile(client);
-      setFormValues(INITIAL_FORM_VALUES);
     } catch (error) {
       console.error(error);
     }

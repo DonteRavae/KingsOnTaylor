@@ -19,11 +19,19 @@ const INITIAL_FORM_VALUES = {
 };
 
 const signInWithEmailAndPassword = async (email, password) => {
-  const { data } = await axios.post("http://localhost:8080/user/login", {
-    email,
-    password,
-  });
-  return data;
+  const { success, user, message } = await axios
+    .post("http://localhost:8080/user/login", {
+      email,
+      password,
+    })
+    .then((response) => response.data);
+
+  if (success) {
+    console.log(message);
+    return user;
+  } else {
+    console.log(message);
+  }
 };
 
 const SignIn = () => {
@@ -38,7 +46,6 @@ const SignIn = () => {
   useEffect(() => {
     let mounted = true;
     if (mounted) {
-      console.log(userProfile);
       dispatch(setCurrentUser(userProfile));
     }
     return () => (mounted = false);
