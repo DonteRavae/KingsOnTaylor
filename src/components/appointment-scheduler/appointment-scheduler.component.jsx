@@ -8,7 +8,7 @@ import "./appointment-scheduler.styles.scss";
 const AppointmentScheduler = ({ mini }) => {
   return (
     <form className="appointment-scheduler">
-      <h2>Life is perfect but your hair can be!</h2>
+      <h1>Life is perfect but your hair can be!</h1>
       <span>Schedule an appointment today!</span>
       <section className="barber-and-time-container">
         <select
