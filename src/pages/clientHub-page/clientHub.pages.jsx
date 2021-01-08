@@ -7,7 +7,7 @@ import "./clientHub.styles.scss";
 
 const ClientHubPage = () => {
   return (
-    <main className="App client-hub">
+    <main className="client-hub">
       <SignInAndSignUp />
     </main>
   );
