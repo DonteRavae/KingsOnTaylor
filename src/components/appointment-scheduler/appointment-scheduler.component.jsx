@@ -5,7 +5,7 @@ import CustomButton from "../custom-button/custom-button.component";
 //Styles
 import "./appointment-scheduler.styles.scss";
 
-const AppointmentScheduler = ({ mini }) => {
+const AppointmentScheduler = () => {
   return (
     <form className="appointment-scheduler">
       <h1>Life is perfect but your hair can be!</h1>
