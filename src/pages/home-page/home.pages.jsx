@@ -11,7 +11,7 @@ import "./home.styles.scss";
 
 const HomePage = () => {
   return (
-    <main className="App">
+    <main className="home-page">
       <Landing />
       {/* <SectionSeparator msg="Heavy Is The Head That Wears The Crown" /> */}
       {/* <FamilyAtmosphere />
