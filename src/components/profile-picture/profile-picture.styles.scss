@@ -1,0 +1,25 @@
+.profile-picture {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  border: 3px solid white;
+  box-shadow: 0 0 8px gray;
+
+  &.mini {
+    height: 75px;
+    width: 75px;
+    border-radius: initial;
+
+    img {
+      border-radius: initial;
+    }
+  }
+
+  img {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+  }
+}
