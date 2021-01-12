@@ -26,12 +26,11 @@ const signInWithEmailAndPassword = async (email, password) => {
     })
     .then((response) => response.data);
 
-  if (success) {
-    console.log(message);
-    return user;
-  } else {
-    console.log(message);
+  if (!success) {
+    throw Error(message);
   }
+  console.log(message);
+  return user;
 };
 
 const SignIn = () => {
