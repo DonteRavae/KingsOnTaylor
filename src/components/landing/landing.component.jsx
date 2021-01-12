@@ -2,6 +2,7 @@
 import React from "react";
 //Components
 import AppointmentScheduler from "../appointment-scheduler/appointment-scheduler.component";
+import ProfilePicture from "../profile-picture/profile-picture.component";
 //Styles
 import "./landing.styles.scss";
 
@@ -17,7 +18,9 @@ const Landing = () => (
       </div>
       <AppointmentScheduler />
     </section>
-    <aside className="appointment-queue"></aside>
+    <aside className="appointment-queue">
+      <ProfilePicture mini imgUrl="https://placeimg.com/640/480" />
+    </aside>
   </section>
 );
 
