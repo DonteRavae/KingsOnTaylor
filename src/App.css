@@ -1,14 +1,25 @@
 .App {
-  height: 100%;
+  height: 100vh;
   width: 100vw;
 
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 7vh 93vh;
+  grid-template-rows: 75px 1fr;
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
 
-  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+.background-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
     url(./assets/barbershop-landing1.jpeg);
   background-size: cover;
   background-position: center center;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
+  z-index: -1;
 }
